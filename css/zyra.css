@@ -7,6 +7,10 @@
 /* end variables */
 
 /* start global rules */
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -50,3 +54,105 @@ ul {
 }
 
 /* end global rules */
+
+/* start header */
+header {
+  box-shadow: 0 0 10px #ddd;
+}
+
+header .container {
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  /* to make the menu appear with respect to it */
+}
+
+header h2 {
+  color: var(--main-color);
+  text-transform: uppercase;
+  font-size: 26px;
+  align-self: center;
+}
+
+header ul {
+  display: flex;
+}
+
+header ul li>a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 30px;
+  font-size: 18px;
+  position: relative;
+  color: initial;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+header ul li>a:hover {
+  color: var(--main-color);
+  background-color: #fafafa;
+}
+
+header ul li>a::before {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--main-color);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: 0.3s;
+}
+
+header ul li>a:hover::before {
+  transform: scaleX(1);
+}
+
+header ul li .menu {
+  display: none;
+}
+
+header ul li:hover .menu {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: calc(100% + 1px);
+  padding: 30px;
+  background-color: white;
+  border-bottom: 3px var(--main-color) solid;
+}
+
+header ul li .menu img {
+  max-width: 100%;
+}
+
+header ul li .menu .links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 40px;
+  flex: 1;
+}
+
+header ul li .menu .links a {
+  display: block;
+  color: var(--main-color);
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 15px;
+  border-bottom: 1px solid #e9e6e6;
+}
+header ul li .menu .links a i {
+  margin-right: 10px;
+}
+
+/* end header */
