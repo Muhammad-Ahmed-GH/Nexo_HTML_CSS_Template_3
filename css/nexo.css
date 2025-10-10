@@ -2,6 +2,7 @@
 :root {
   --main-color: #2196f3;
   --main-color-alt: #1787e0;
+  --main-transition-duration: 0.3s;
 }
 
 /* end variables */
@@ -58,10 +59,13 @@ ul {
 /* start header */
 header {
   box-shadow: 0 0 10px #ddd;
+  --header-height: 72px;
+  /* to keep the header height constant regardless of anything happens in the children */
 }
 
 header .container {
-  height: 72px;
+  height: var(--header-height);
+  /* you can set the height of header, .container, or the .logo for example */
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -71,8 +75,8 @@ header .container {
 @media (max-width: 767px) {
   header .container {
     flex-direction: column;
-    height: 90px;
     align-items: center;
+    --header-height: 90px;
   }
 }
 
@@ -97,24 +101,53 @@ header ul {
   display: flex;
 }
 
-header ul li>a {
+/* the responsive part can be implemented in a different way
+
+  you can make the flex-wrap: wrap in the container
+  then you make the height of logo 100%
+  then you center the nav usin margin: auto
+
+  .container {
+    flex-wrap: wrap;
+  }
+  instead of the media query of .container to change the flex-direction
+
+  @media (max-width: 767px) {
+    .logo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    header ul {
+      margin: auto;
+    }
+    more styles
+  }
+
+*/
+
+header ul>li>a {
+  /* this selector to ensure that these stylings won't be applied to unwanted children later */
   color: initial;
   text-decoration: none;
   height: 100%;
   display: flex;
   align-items: center;
   padding: 0 30px;
+  /* the vertical padding is useless as the items are already centered vertically */
+  /* vertical padding can cause problems in the future in the header height */
   font-size: 18px;
   position: relative;
   /* to make the upper border with ::before */
-  transition: 0.3s;
+  transition: var(--main-transition-duration);
 }
 
 @media (max-width: 767px) {
-  header ul li>a {
+  header ul>li>a {
     padding: 10px;
     font-size: 14px;
-    height: 40px;
+    height: calc(var(--header-height) - 50px);
   }
 }
 
@@ -123,7 +156,7 @@ header ul li:hover>a {
   background-color: #fafafa;
 }
 
-header ul li>a::before {
+header ul>li>a::before {
   content: '';
   position: absolute;
   height: 4px;
@@ -133,12 +166,34 @@ header ul li>a::before {
   background-color: var(--main-color);
   transform-origin: left;
   transform: scaleX(0);
-  transition: 0.3s;
+  transition: var(--main-transition-duration);
 }
 
 header ul li:hover>a::before {
   transform: scaleX(1);
 }
+
+/* another way to implement the ::before part
+
+header ul>li>a {
+  ...
+  overflow: hidden;
+}
+
+header ul>li>a::before {
+  ...
+  left: -100%;
+  transition: ...;
+}
+
+header ul>li>a:hover::before {
+  left: 0;
+}
+
+// instead  of scaling the ::before, we move it
+// and added the overflow hidden to hide the outside ::before
+
+*/
 
 header ul li .menu {
   display: none;
