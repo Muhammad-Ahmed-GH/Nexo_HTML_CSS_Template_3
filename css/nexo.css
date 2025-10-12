@@ -290,43 +290,42 @@ header ul>li>a:hover::before {
 */
 
 header ul li .menu {
-  display: none;
-}
-
-header ul li:hover .menu {
-  display: block;
-  padding: 5px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 30px;
   position: absolute;
   right: 0;
   left: 0;
-  top: calc(100% + 1px);
+  top: calc(100% + 50px);
   background-color: white;
   border-bottom: 3px var(--main-color) solid;
-  animation: float 0.3s 1;
-  z-index: 3;
+  z-index: -1;
+  opacity: 0;
+  transition: top var(--main-transition-duration), opacity var(--main-transition-duration);
 }
 
-@media (min-width: 768px) {
+header ul li:hover .menu {
+  opacity: 1;
+  top: calc(100% + 1px);
+  z-index: 100;
+}
+
+@media (max-width: 767px) {
   header ul li:hover .menu {
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 30px;
-  }
-}
-
-header ul li .menu .image {
-  display: none;
-}
-
-@media (min-width: 992px) {
-  header ul li .menu .image {
     display: block;
+    padding: 5px;
   }
+}
 
-  header ul li .menu img {
-    max-width: 100%;
+@media (max-width: 991px) {
+  header ul li .menu .image {
+    display: none;
   }
+}
+
+header ul li .menu img {
+  max-width: 100%;
 }
 
 header ul li .menu .links {
@@ -342,8 +341,6 @@ header ul li .menu .links a {
   font-size: 18px;
   padding: 15px;
   position: relative;
-  transform: scale(1);
-  /* to create a new stacking context so ::before won't be on the very back */
   border-bottom: 1px solid #e9e6e6;
 }
 
@@ -362,17 +359,15 @@ header ul li .menu .links a::before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 0;
   height: 100%;
   background-color: #fafafa;
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: 0.2s;
+  transition: var(--main-transition-duration);
   z-index: -1;
 }
 
 header ul li .menu .links a:hover::before {
-  transform: scaleX(1);
+  width: 100%;
 }
 
 header ul li .menu .links a i {
@@ -914,18 +909,6 @@ header ul li .menu .links a i {
 /* end services */
 
 /* start animation */
-@keyframes float {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes up-and-down {
   to {
     transform: translateY(-50px);
