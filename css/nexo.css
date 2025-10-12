@@ -2,7 +2,11 @@
 :root {
   --main-color: #2196f3;
   --main-color-alt: #1787e0;
+  --light-text-color: #777;
   --main-transition-duration: 0.3s;
+  --header-height: 72px;
+  --section-padding: 100px;
+  /* to keep the header height constant regardless of anything happens in the children */
 }
 
 /* end variables */
@@ -54,13 +58,103 @@ ul {
   }
 }
 
+section {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
 /* end global rules */
+
+/* start components */
+.section-heading {
+  border: 2px solid black;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  width: fit-content;
+  margin: 0 auto 80px;
+  font-size: 30px;
+  position: relative;
+  z-index: 0;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.section-heading::before {
+  left: -30px;
+  transform-origin: left;
+}
+
+.section-heading::after {
+  right: -30px;
+  transform-origin: right;
+}
+
+.section-heading:hover {
+  animation: heading-colors var(--main-transition-duration) 0.5s linear forwards;
+}
+
+.section-heading:hover::before {
+  animation: heading-left-ball 0.5s linear forwards;
+}
+
+.section-heading:hover::after {
+  animation: heading-right-ball 0.5s linear forwards;
+}
+
+@keyframes heading-left-ball {
+  50% {
+    left: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  100% {
+    left: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+@keyframes heading-right-ball {
+  50% {
+    right: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  100% {
+    right: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+@keyframes heading-colors {
+  to {
+    background-color: var(--main-color);
+    color: white;
+    border-color: white;
+  }
+}
+
+/* end components */
 
 /* start header */
 header {
   box-shadow: 0 0 10px #ddd;
-  --header-height: 72px;
-  /* to keep the header height constant regardless of anything happens in the children */
 }
 
 header .container {
@@ -208,19 +302,8 @@ header ul li:hover .menu {
   top: calc(100% + 1px);
   background-color: white;
   border-bottom: 3px var(--main-color) solid;
-  animation: appear 0.3s 1;
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: float 0.3s 1;
+  z-index: 3;
 }
 
 @media (min-width: 768px) {
@@ -297,3 +380,592 @@ header ul li .menu .links a i {
 }
 
 /* end header */
+
+/* start landing */
+.landing {
+  position: relative;
+  overflow: hidden;
+}
+
+.landing::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -40px;
+  width: 100%;
+  height: 100%;
+  background-color: #ececec;
+  z-index: -1;
+  transform-origin: top left;
+  transform: skewY(-6deg);
+}
+
+@media (max-width: 767px) {
+  .landing::before {
+    top: -60px;
+  }
+}
+
+.landing .container {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 120px;
+}
+
+.landing .text {
+  max-width: 500px;
+}
+
+@media (max-width: 991px) {
+  .landing .text {
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+.landing .text h2 {
+  font-size: 40px;
+  letter-spacing: -2px;
+  margin: 0px;
+}
+
+@media (max-width: 767px) {
+  .landing .text h2 {
+    font-size: 28px;
+  }
+}
+
+.landing .text p {
+  font-size: 23px;
+  line-height: 1.7;
+  color: rgb(102, 102, 102);
+  margin: 5px 0px 0px;
+}
+
+@media (max-width: 767px) {
+  .landing .text p {
+    font-size: 18px;
+  }
+}
+
+.landing img {
+  width: 600px;
+  animation: up-and-down 4s infinite alternate linear;
+}
+
+@media (max-width: 991px) {
+  .landing img {
+    display: none;
+  }
+}
+
+.landing .go-down {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  color: var(--main-color);
+  text-decoration: none;
+  font-size: 25px;
+  transition: var(--main-transition-duration);
+}
+
+.landing .go-down:hover {
+  color: var(--main-color-alt);
+}
+
+.landing .go-down i {
+  animation: bouncing 1.5s infinite;
+}
+
+/* end landing */
+
+/* start articles */
+.articles .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.articles .card {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 2px 15px rgb(0 0 0 / 10%);
+  transition: var(--main-transition-duration);
+}
+
+.articles .card:hover {
+  box-shadow: 0px 2px 15px rgb(0 0 0 / 20%);
+  transform: translateY(-10px);
+}
+
+.articles .card img {
+  max-width: 100%;
+}
+
+.articles .card .body {
+  padding: 20px;
+}
+
+.articles .card .body h3 {
+  margin: 0 0 10px;
+}
+
+.articles .card .body p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--light-text-color);
+}
+
+.articles .card .foot a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--main-color);
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: bold;
+  padding: 20px;
+  border-top: 1px solid #e6e6e7;
+  position: relative;
+  z-index: 0;
+}
+
+.articles .card .foot a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #fafafa;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: var(--main-transition-duration);
+  z-index: -1;
+}
+
+.articles .card .foot a:hover::before {
+  transform: scaleX(1);
+}
+
+.articles .card .foot i {
+  font-size: 12px;
+  position: relative;
+}
+
+.articles .card:hover .foot i {
+  animation: point-right 0.5s linear alternate infinite;
+}
+
+/* end articles */
+
+/* start gallery */
+.gallery {
+  background-color: #ececec;
+}
+
+.gallery .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.gallery .card {
+  padding: 15px;
+  background-color: white;
+  /* box-shadow: 2px 2px 10px rgb(0 0 0 / 10%); */
+  box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+}
+
+.gallery .card .image {
+  overflow: hidden;
+  position: relative;
+  transform: scale(1);
+}
+
+.gallery .card .image::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: white;
+  opacity: 0;
+}
+
+.gallery .card:hover .image::before {
+  animation: card-glow 0.5s;
+}
+
+.gallery .cards img {
+  max-width: 100%;
+  transition: transform var(--main-transition-duration);
+  position: relative;
+  z-index: -1;
+}
+
+.gallery .card:hover img {
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* end gallery */
+
+/* start features */
+.features .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.features .feature {
+  border: 1px solid #ccc;
+  text-align: center;
+  --feature-accent-color: black;
+  position: relative;
+}
+
+.features .feature::before {
+  content: '';
+  background-color: white;
+  position: absolute;
+
+}
+
+.features .quality {
+  --feature-accent-color: #f44036;
+}
+
+.features .time {
+  --feature-accent-color: #009688;
+}
+
+.features .passion {
+  --feature-accent-color: #03a9f4;
+}
+
+.features .feature .image {
+  position: relative;
+}
+
+.features .feature .image::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  /* background-color: rgb(244 64 54 / 60%); */
+  background-color: var(--feature-accent-color);
+  opacity: 60%;
+}
+
+.features .feature img {
+  display: block;
+  /* to remove the small space added due to inline elements */
+  max-width: 100%;
+}
+
+.features .feature h3 {
+  text-transform: capitalize;
+  font-size: 40px;
+  position: relative;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features .feature h3::after {
+  content: '';
+  height: 5px;
+  width: 70%;
+  background-color: var(--feature-accent-color);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -20px;
+}
+
+.features .feature p {
+  line-height: 2;
+  font-size: 20px;
+  padding: 25px;
+  color: var(--light-text-color);
+}
+
+.features .feature a {
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 22px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto 30px;
+  padding: 10px 30px;
+  border: 3px solid var(--feature-accent-color);
+  color: var(--feature-accent-color);
+  border-radius: 6px;
+  background: linear-gradient(to right, var(--feature-accent-color) 50%, white 50%);
+  background-size: 200%;
+  background-position: right;
+  transition: var(--main-transition-duration);
+}
+
+.features .feature:hover a {
+  background-position: left;
+  color: white;
+}
+
+/* you can also implement this fill effect using ::before */
+
+/* end features */
+
+/* start testimonials */
+.testimonials {
+  background-color: #ececec;
+}
+
+.testimonials .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 40px;
+  row-gap: 60px;
+}
+
+.testimonials .comment {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 7%);
+  position: relative;
+  padding: 20px;
+}
+
+.testimonials .comment img {
+  position: absolute;
+  right: -10px;
+  top: 0;
+  transform: translateY(-50%);
+  width: 100px;
+  border-radius: 50%;
+  border: solid 10px #ececec;
+}
+
+.testimonials .comment h3 {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.testimonials .comment h3+p {
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.testimonials .comment p {
+  margin: 0;
+  margin-top: 10px;
+  color: var(--light-text-color);
+  line-height: 1.5;
+}
+
+.testimonials .comment .rating .fa-solid {
+  color: #ffc107;
+}
+
+/* end testimonials */
+
+/* start team members */
+.team-members .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 40px;
+}
+
+.team-members .card {
+  position: relative;
+}
+
+.team-members .card .body {
+  background-color: #f3f3f3;
+  padding-top: 60px;
+}
+
+.team-members .card .body .social {
+  height: 395px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.team-members .card .body .social i {
+  margin: 0 20px;
+}
+
+.team-members .card img {
+  height: 395px;
+  position: absolute;
+  right: 60px;
+  top: 60px;
+}
+
+/* end team members */
+
+/* start services */
+.services {
+  background-color: #ececec;
+}
+
+.services .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  counter-reset: serv-num;
+}
+
+.services .serv {
+  counter-increment: serv-num;
+  background-color: white;
+  text-align: center;
+  padding-top: 30px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
+  transition: var(--main-transition-duration);
+  position: relative;
+}
+
+.services .serv:hover {
+  transform: translateY(-10px);
+}
+
+.services .serv::before {
+  content: '';
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--main-color);
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: var(--main-transition-duration);
+}
+
+.services .serv:hover::before {
+  transform: scaleX(1);
+}
+
+.services .serv i {
+  font-size: 4em;
+  color: #d5d5d5;
+  margin-bottom: 20px;
+}
+
+.services .serv h3 {
+  color: var(--main-color);
+  text-transform: capitalize;
+  font-size: 25px;
+  margin: 0 0 40px;
+}
+
+.services .serv .foot {
+  background-color: #f9f9f9;
+  padding: 15px;
+  text-align: right;
+  position: relative;
+}
+
+.services .serv .foot::before {
+  content: "0" counter(serv-num);
+  background-color: var(--main-color);
+  color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+  padding-left: 25px;
+}
+
+.services .serv .foot::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  top: 0;
+  left: 80px;
+  transform: skewX(-30deg);
+  background-color: #d5d5d5;
+}
+
+.services .serv .foot a {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: var(--main-color);
+}
+
+/* end services */
+
+/* start animation */
+@keyframes float {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes up-and-down {
+  to {
+    transform: translateY(-50px);
+  }
+}
+
+@keyframes bouncing {
+
+  20%,
+  50%,
+  80% {
+    transform: translateY(0);
+  }
+
+  40%,
+  60% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes point-right {
+  to {
+    transform: translateX(7px);
+  }
+}
+
+@keyframes card-glow {
+  30% {
+    opacity: 0.15;
+  }
+
+  70%,
+  100% {
+    width: 100%;
+    height: 100%;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* end animation */
