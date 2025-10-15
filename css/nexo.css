@@ -3,6 +3,7 @@
   --main-color: #2196f3;
   --main-color-alt: #1787e0;
   --light-text-color: #777;
+  --section-alt-background: #ececec;
   --main-transition-duration: 0.3s;
   --header-height: 72px;
   --section-padding: 100px;
@@ -61,6 +62,23 @@ ul {
 section {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
+}
+
+section:nth-of-type(even) {
+  background-color: var(--section-alt-background);
+  position: relative;
+}
+
+/* spikes */
+section:nth-of-type(even)::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 15px;
+  left: 0;
+  top: 0;
+  background-image: conic-gradient(from -45deg at bottom, white 25%, transparent 25%);
+  background-size: 30px 15px;
 }
 
 /* end global rules */
@@ -553,10 +571,6 @@ header ul li .menu .links a i {
 /* end articles */
 
 /* start gallery */
-.gallery {
-  background-color: #ececec;
-}
-
 .gallery .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -716,10 +730,6 @@ header ul li .menu .links a i {
 /* end features */
 
 /* start testimonials */
-.testimonials {
-  background-color: #ececec;
-}
-
 .testimonials .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -807,10 +817,6 @@ header ul li .menu .links a i {
 /* end team members */
 
 /* start services */
-.services {
-  background-color: #ececec;
-}
-
 .services .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
