@@ -802,36 +802,98 @@ header ul li .menu .links a i {
 .team-members .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  column-gap: 40px;
+  gap: 40px;
 }
 
 .team-members .card {
   position: relative;
-}
-
-.team-members .card .body {
-  background-color: #f3f3f3;
   padding-top: 60px;
 }
 
-.team-members .card .body .social {
-  height: 395px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 30px;
+.team-members .card::before {
+  content: '';
+  width: calc(100% - 50px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f3f3f3;
+  z-index: -1;
+  border-radius: 10px;
 }
 
-.team-members .card .body .social i {
-  margin: 0 20px;
+.team-members .card::after {
+  content: '';
+  position: absolute;
+  width: calc(100% - 50px);
+  height: 100%;
+  right: 0;
+  top: 0;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: var(--main-transition-duration);
+  z-index: -1;
+}
+
+.team-members .card:hover::after {
+  transform: scaleX(1);
+}
+
+.team-members .card .body {
+  display: flex;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
 }
 
 .team-members .card img {
-  height: 395px;
-  position: absolute;
-  right: 60px;
-  top: 60px;
+  width: calc(100% - 50px);
+  border-radius: 10px;
+  transition: filter var(--main-transition-duration);
+}
+
+.team-members .card:hover img {
+  filter: grayscale(1)
+}
+
+.team-members .card .body .social {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 50px;
+}
+
+.team-members .card .body .social a {
+  margin: 0 20px;
+  color: #777;
+}
+.team-members .card .body .social a:hover {
+  color: var(--main-color);
+}
+
+.team-members .card .info {
+  width: calc(100% - 50px);
+  margin-left: 50px;
+  border-radius: 0 0 10px 10px;
+  padding: 22px;
+}
+
+.team-members .card:hover .info {
+  filter: grayscale(1)
+}
+
+.team-members .card .info h3 {
+  margin: 0 0 10px;
+  text-transform: capitalize;
+  font-size: 22px;
+  color: var(--main-color);
+}
+
+.team-members .card .info p {
+  margin: 0;
 }
 
 /* end team members */
