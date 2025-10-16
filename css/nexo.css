@@ -253,6 +253,10 @@ header ul>li>a {
   transition: var(--main-transition-duration);
 }
 
+header ul>li:last-child>a {
+  cursor: pointer;
+}
+
 @media (max-width: 767px) {
   header ul>li>a {
     padding: 10px;
