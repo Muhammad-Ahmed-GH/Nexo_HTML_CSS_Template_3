@@ -655,6 +655,7 @@ header ul li .menu .links a i {
 
 .features .feature .image {
   position: relative;
+  overflow: hidden;
 }
 
 .features .feature .image::before {
@@ -669,6 +670,22 @@ header ul li .menu .links a i {
   opacity: 60%;
 }
 
+.features .feature .image::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 0px 0px 170px 500px;
+  border-bottom-color: white;
+  transition: border-width var(--main-transition-duration);
+}
+
+.features .feature:hover .image::after {
+  border-width: 0px 500px 170px 0px;
+}
+
 .features .feature img {
   display: block;
   /* to remove the small space added due to inline elements */
@@ -680,8 +697,7 @@ header ul li .menu .links a i {
   font-size: 40px;
   position: relative;
   width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .features .feature h3::after {
