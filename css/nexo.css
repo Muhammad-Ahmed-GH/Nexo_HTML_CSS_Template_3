@@ -802,7 +802,7 @@ header ul li .menu .links a i {
 .team-members .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 40px;
+  gap: 30px;
 }
 
 .team-members .card {
@@ -812,15 +812,28 @@ header ul li .menu .links a i {
   border-radius: 10px;
 }
 
+@media (max-width: 767px) {
+  .team-members .card {
+    padding-top: 0;
+  }
+}
+
 .team-members .card::before,
 .team-members .card::after {
   content: '';
-  width: calc(100% - 50px);
+  width: calc(100% - 60px);
   height: 100%;
   position: absolute;
   top: 0;
   z-index: -1;
   border-radius: 10px;
+}
+
+@media (max-width: 767px) {
+  .team-members .card::before,
+  .team-members .card::after {
+    width: 100%;
+  }
 }
 
 .team-members .card::before {
@@ -835,11 +848,23 @@ header ul li .menu .links a i {
 }
 
 .team-members .card:hover::after {
-  left: 50px;
+  left: 60px;
+}
+
+@media (max-width: 767px) {
+  .team-members .card:hover::after {
+    left: 0;
+  }
 }
 
 .team-members .card .body {
   display: flex;
+}
+
+@media (max-width: 767px) {
+  .team-members .card .body {
+    flex-direction: column;
+  }
 }
 
 .team-members .card img {
@@ -848,30 +873,62 @@ header ul li .menu .links a i {
   transition: filter var(--main-transition-duration);
 }
 
+@media (max-width: 767px) {
+  .team-members .card img {
+    width: 100%;
+  }
+}
+
 .team-members .card:hover img {
   filter: grayscale(1)
 }
 
 .team-members .card .body .social {
-  width: 60px;
+  flex-basis: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
+}
+
+@media (max-width: 767px) {
+  .team-members .card .body .social {
+    flex-direction: row;
+  }
 }
 
 .team-members .card .body .social a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 0;
   color: #777;
+  text-decoration: none;
+  transition: var(--main-transition-duration);
 }
+
+@media (max-width: 767px) {
+  .team-members .card .body .social a {
+    padding: 17px;
+  }
+}
+
 .team-members .card .body .social a:hover {
   color: var(--main-color);
 }
 
 .team-members .card .info {
   width: calc(100% - 50px);
-  margin-left: 50px;
+  margin-left: 60px;
   padding: 22px;
+}
+
+@media (max-width: 767px) {
+  .team-members .card .info {
+    margin-left: 0;
+    padding-top: 0;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .team-members .card:hover .info {
