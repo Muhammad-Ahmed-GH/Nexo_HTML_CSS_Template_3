@@ -1040,6 +1040,49 @@ header ul li .menu .links a i {
 }
 
 /* end services */
+/* start skills */
+.skills .container {
+  display: flex;
+}
+.skills  img {
+  width: 500px;
+}
+@media (max-width: 991px) {
+  .skills img {
+    display: none;
+  }
+}
+.skills .bars {
+  flex: 1;
+}
+.skills .bars li span {
+  font-weight: bold;
+  font-size: 19px;
+  margin: 20px 0;
+  display: block;
+}
+.skills .bars li .bar {
+  background-color: #eee;
+  height: 30px;
+  position: relative;
+}
+.skills .bars li .prog {
+  background-color: var(--main-color);
+  height: 100%;
+}
+.skills .bars li .prog::after {
+  content: attr(prog);
+  position: absolute;
+  color: var(--main-color);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  right: 0;
+  bottom: calc(100% + 20px);
+  font-weight: bold;
+  font-size: 12px;
+  padding: 3px 5px;
+}
+/* end skills */
 
 /* start animation */
 @keyframes up-and-down {
