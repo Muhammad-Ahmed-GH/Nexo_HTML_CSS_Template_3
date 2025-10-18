@@ -830,6 +830,7 @@ header ul li .menu .links a i {
 }
 
 @media (max-width: 767px) {
+
   .team-members .card::before,
   .team-members .card::after {
     width: 100%;
@@ -1030,7 +1031,7 @@ header ul li .menu .links a i {
   left: 0px;
   transform-origin: top left;
   transform: skewX(-30deg);
-  background: linear-gradient(to right, var(--main-color) 65%,#d5d5d5 65%);
+  background: linear-gradient(to right, var(--main-color) 65%, #d5d5d5 65%);
 }
 
 .services .serv .foot a {
@@ -1044,32 +1045,39 @@ header ul li .menu .links a i {
 .skills .container {
   display: flex;
 }
-.skills  img {
+
+.skills img {
   width: 500px;
 }
+
 @media (max-width: 991px) {
   .skills img {
     display: none;
   }
 }
+
 .skills .bars {
   flex: 1;
 }
+
 .skills .bars li span {
   font-weight: bold;
   font-size: 19px;
   margin: 20px 0;
   display: block;
 }
+
 .skills .bars li .bar {
   background-color: #eee;
   height: 30px;
   position: relative;
 }
+
 .skills .bars li .prog {
   background-color: var(--main-color);
   height: 100%;
 }
+
 .skills .bars li .prog::after {
   content: attr(prog);
   position: absolute;
@@ -1082,7 +1090,66 @@ header ul li .menu .links a i {
   font-size: 12px;
   padding: 3px 5px;
 }
+
 /* end skills */
+
+/* start how it works */
+.work-steps .container {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+
+@media (max-width: 991px) {
+  .work-steps .container {
+    flex-direction: column;
+  }
+}
+
+.work-steps .container>img {
+  max-width: 100%;
+}
+
+.work-steps .content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.work-steps .content .card {
+  background-color: #f6f5f5;
+  border: 2px white solid;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+  .work-steps .content .card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.work-steps .content .card img {
+  width: 64px;
+}
+
+.work-steps .content .card h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.work-steps .content .card p {
+  color: #777;
+  line-height: 1.7;
+  margin: 10px 0 0;
+  font-size: 18px;
+}
+
+/* end how it works */
 
 /* start animation */
 @keyframes up-and-down {
