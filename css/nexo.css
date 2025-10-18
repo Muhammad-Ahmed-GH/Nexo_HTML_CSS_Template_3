@@ -1124,6 +1124,27 @@ header ul li .menu .links a i {
   align-items: center;
   gap: 30px;
   border-radius: 6px;
+  position: relative;
+  z-index: 0;
+  /* to create a stacking context */
+}
+
+.work-steps .content .card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ededed;
+  width: 0;
+  height: 0;
+  transition: var(--main-transition-duration);
+  z-index: -1;
+}
+
+.work-steps .content .card:hover::before {
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 767px) {
