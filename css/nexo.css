@@ -1312,6 +1312,77 @@ header ul li .menu .links a i {
 
 /* end pricing plans */
 
+/* start top videos */
+.videos .content {
+  border: 1px #ddd solid;
+  display: flex;
+  padding: 0;
+}
+
+@media(max-width: 991px) {
+  .videos .content {
+    flex-direction: column;
+  }
+}
+
+.videos .playlist {
+  flex-basis: 300px;
+}
+
+.videos .playlist .head {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 20px;
+  background-color: #f4f4f4;
+  text-transform: capitalize;
+}
+
+.videos .playlist ul li {
+  padding: 20px;
+  border-top: 1px #ececec solid;
+  cursor: pointer;
+  transition: var(--main-transition-duration);
+}
+
+.videos .playlist ul li:hover {
+  background-color: #fafafa;
+}
+
+.videos .playlist ul li p {
+  margin: 0 0 10px;
+  transition: var(--main-transition-duration);
+}
+
+.videos .playlist ul li:hover p {
+  color: var(--main-color);
+}
+
+.videos .playlist ul li span {
+  color: var(--light-text-color);
+}
+
+.videos .preview {
+  flex: 1;
+  padding: 10px;
+  background-color: #e2e2e2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.videos .preview img {
+  max-width: 100%;
+}
+
+.videos .preview p {
+  background-color: white;
+  padding: 20px;
+  margin: 0;
+}
+/* end top videos */
+
 /* start animation */
 @keyframes up-and-down {
   to {
