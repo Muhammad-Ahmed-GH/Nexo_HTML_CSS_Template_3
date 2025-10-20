@@ -1172,6 +1172,146 @@ header ul li .menu .links a i {
 
 /* end how it works */
 
+/* start pricing plans */
+.pricing .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.pricing .plan {
+  background-color: white;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 13%), 0 2px 4px 0 rgb(0 0 0 / 12%);
+  position: relative;
+  z-index: 0;
+}
+
+.pricing .plan.popular {
+  transform: translateY(-20px);
+}
+
+.pricing .plan::before,
+.pricing .plan::after {
+  content: '';
+  position: absolute;
+  height: 50%;
+  width: 0;
+  background-color: #f6f6f6;
+  z-index: -1;
+  transition: var(--main-transition-duration);
+}
+
+.pricing .plan::before {
+  left: 0;
+  top: 0;
+}
+
+.pricing .plan::after {
+  right: 0;
+  bottom: 0;
+}
+
+.pricing .plan:hover::before,
+.pricing .plan:hover::after {
+  width: 100%;
+}
+
+.pricing .plan.popular .ribbon {
+  writing-mode: vertical-rl;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  padding: 10px;
+  padding-bottom: 30px;
+  color: white;
+  background-color: var(--main-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pricing .plan.popular .ribbon::after {
+  content: '';
+  position: absolute;
+  color: white;
+  right: 0;
+  bottom: 0;
+  border: transparent 20.5px solid;
+  border-bottom-color: white;
+}
+
+.pricing .plan .head {
+  text-align: center;
+}
+
+.pricing .plan .head h3 {
+  margin: 30px 0;
+  font-size: 25px;
+  letter-spacing: -1px;
+}
+
+.pricing .plan .head img {
+  width: 80px;
+  max-width: 100%;
+}
+
+.pricing .plan .head .price {
+  margin-bottom: 20px;
+}
+
+.pricing .plan .head .price .amount {
+  display: block;
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--main-color);
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.pricing .plan .head .price .amount::before {
+  content: '$';
+  font-size: 60px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.pricing .plan .head .price .period {
+  color: var(--light-text-color);
+  text-transform: capitalize;
+}
+
+.pricing .plan ul li {
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+.pricing .plan ul li::before {
+  font-family: "Fontawesome";
+  content: '\f00c';
+  color: var(--main-color);
+  margin-right: 10px;
+}
+
+.pricing .plan .foot a {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 40px;
+  padding: 15px 20px;
+  border: 2px var(--main-color) solid;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--main-color);
+  font-weight: bold;
+  text-transform: capitalize;
+  transition: var(--main-transition-duration);
+}
+
+.pricing .plan .foot a:hover {
+  color: white;
+  background-color: var(--main-color);
+}
+
+/* end pricing plans */
+
 /* start animation */
 @keyframes up-and-down {
   to {
