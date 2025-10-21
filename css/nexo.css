@@ -1480,8 +1480,14 @@ header ul li .menu .links a i {
   min-height: 100vh;
 }
 
+@media(max-width: 991px) {
+  .discount {
+    flex-direction: column;
+  }
+}
+
 .discount .content,
-.discount form {
+.discount .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1509,7 +1515,7 @@ header ul li .menu .links a i {
   z-index: -1;
 }
 
-.discount .content h2 {
+.discount h2 {
   font-size: 40px;
   letter-spacing: -2px;
   text-transform: capitalize;
@@ -1525,6 +1531,55 @@ header ul li .menu .links a i {
 .discount .content img {
   width: 300px;
   max-width: 100%;
+}
+
+.discount form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+
+@media(max-width: 991px) {
+  .discount form {
+    padding-bottom: 50px;
+  }
+}
+
+.discount form h2 {
+  margin-bottom: 0;
+}
+
+.discount form input:not([type='submit']),
+.discount form textarea {
+  background-color: #f9f9f9;
+  border: none;
+  outline: none;
+  border-bottom: 1px #ccc solid;
+  padding: 15px;
+  caret-color: var(--main-color);
+}
+
+.discount form textarea {
+  height: 200px;
+  resize: none;
+}
+
+.discount form input[type='submit'] {
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+  outline: none;
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: var(--main-transition-duration);
+}
+
+.discount form input[type='submit']:hover {
+  background-color: var(--main-color-alt);
 }
 
 /* end discount */
