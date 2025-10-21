@@ -332,7 +332,7 @@ header ul li:hover .menu {
 }
 
 @media (max-width: 767px) {
-  header ul li:hover .menu {
+  header ul li .menu {
     display: block;
     padding: 5px;
   }
