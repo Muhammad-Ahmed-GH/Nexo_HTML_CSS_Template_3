@@ -1473,6 +1473,62 @@ header ul li .menu .links a i {
 
 /* end stats */
 
+/* start discount */
+.discount {
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+.discount .content,
+.discount form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.discount .content {
+  color: white;
+  text-align: center;
+  animation: change-background infinite alternate 10s;
+  position: relative;
+  z-index: 0;
+}
+
+.discount .content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--main-color);
+  opacity: 0.95;
+  z-index: -1;
+}
+
+.discount .content h2 {
+  font-size: 40px;
+  letter-spacing: -2px;
+  text-transform: capitalize;
+}
+
+.discount .content p {
+  line-height: 1.6;
+  font-size: 18px;
+  max-width: 500px;
+  margin-top: 0;
+}
+
+.discount .content img {
+  width: 300px;
+  max-width: 100%;
+}
+
+/* end discount */
+
 /* start animation */
 @keyframes up-and-down {
   to {
@@ -1512,6 +1568,15 @@ header ul li .menu .links a i {
     width: 200%;
     height: 200%;
     /* to make it look as if it goes out of the border (flashing) */
+  }
+}
+
+@keyframes change-background {
+  0% {
+    background-image: url('../images/discount-background1.jpg');
+  }
+  100% {
+    background-image: url('../images/discount-background2.jpg');
   }
 }
 
