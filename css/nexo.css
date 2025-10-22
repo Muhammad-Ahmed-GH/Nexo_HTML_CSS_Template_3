@@ -1558,6 +1558,12 @@ header ul li .menu .links a i {
   border-bottom: 1px #ccc solid;
   padding: 15px;
   caret-color: var(--main-color);
+  transition: var(--main-transition-duration);
+}
+
+.discount form input:not([type='submit']):focus,
+.discount form textarea:focus {
+  border-color: var(--main-color);
 }
 
 .discount form textarea {
